@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Monitoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Air Quality Monitoring System</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Sensor Cards -->
+            <div class="col-md-3">
+                <div class="card sensor-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Suhu</h5>
+                        <h2 id="temperature">--</h2>
+                        <p class="card-text">°C</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card sensor-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Kelembaban</h5>
+                        <h2 id="humidity">--</h2>
+                        <p class="card-text">%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card sensor-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Asap (MQ-2)</h5>
+                        <h2 id="smoke">--</h2>
+                        <p class="card-text">ppm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card sensor-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Gas (MQ-135)</h5>
+                        <h2 id="gas">--</h2>
+                        <p class="card-text">ppm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <!-- Status Aktuator -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Status Aktuator</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="actuator-status">
+                                    <span>Ventilasi:</span>
+                                    <span id="ventilation-status" class="badge bg-secondary">--</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="actuator-status">
+                                    <span>Kipas:</span>
+                                    <span id="fan-status" class="badge bg-secondary">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Info Update
+                        <div class="float-end">
+                            <select id="timeRange" class="form-select form-select-sm" style="width: 150px;">
+                                <option value="1">1 Jam</option>
+                                <option value="6">6 Jam</option>
+                                <option value="24" selected>24 Jam</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Update terakhir: <span id="last-update">--</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <!-- Grafik -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Grafik Suhu</div>
+                    <div class="card-body">
+                        <canvas id="tempChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Grafik Kelembaban</div>
+                    <div class="card-body">
+                        <canvas id="humidityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Grafik Level Asap</div>
+                    <div class="card-body">
+                        <canvas id="smokeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Grafik Level Gas</div>
+                    <div class="card-body">
+                        <canvas id="gasChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

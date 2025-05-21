@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "app.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "app.py"
+        }
+    ],
+    "env": {
+        "FIREBASE_DATABASE_URL": "https://air-quality-monitoring-s-56791-default-rtdb.asia-southeast",
+        "FIREBASE_API_KEY": "AIzaSyDxVJSM1eheDUW444wypn1exK_-5BA0EII"
+    }
+}
